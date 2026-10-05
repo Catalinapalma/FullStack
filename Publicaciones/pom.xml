@@ -26,11 +26,11 @@
 
     <dependencies>
 
-    	<dependency>
-    		<groupId>org.springframework.boot</groupId>
-    		<artifactId>spring-boot-starter-actuator</artifactId>
-    	</dependency>
-
+        <!-- Actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 
         <!-- Spring Web -->
         <dependency>
@@ -87,7 +87,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Testing -->
+        <!-- Testing: JUnit, Mockito, MockMvc -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
@@ -99,11 +99,13 @@
     <build>
         <plugins>
 
+            <!-- Spring Boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
+            <!-- Compilador Maven / Lombok -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -144,6 +146,32 @@
                                 </path>
                             </annotationProcessorPaths>
                         </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+            <!-- JaCoCo - Cobertura de pruebas -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.14</version>
+
+                <executions>
+
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
 
                 </executions>
